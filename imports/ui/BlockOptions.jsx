@@ -11,7 +11,7 @@ const BlockOptions = ({ blockId }) => {
   });
 
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "absolute", top: 0, right: 0 }}>
       {showOptions ? (
         <Box
           ref={ref}

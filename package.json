@@ -11,6 +11,7 @@
     "@babel/runtime": "^7.20.7",
     "@emotion/react": "^11.10.6",
     "@iconscout/react-unicons": "^2.0.2",
+    "@react-hook/hover": "^4.0.0",
     "meteor-node-stubs": "^1.2.5",
     "react": "^18.2.0",
     "react-cool-onclickoutside": "^1.7.0",

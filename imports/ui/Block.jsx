@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Box,
   Heading,
@@ -11,11 +11,14 @@ import {
 } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
 import BlockOptions from "./BlockOptions";
+import useHover from "@react-hook/hover";
 
 import ReactMarkdown from "react-markdown";
 
 const Block = ({ block: { _id, title, content } }) => {
   const [editing, setEditing] = useState(false);
+  const target = React.useRef(null);
+  const isHovering = useHover(target);
 
   const updateBlock = (args) =>
     BlocksCollection.update(_id, {
@@ -23,7 +26,7 @@ const Block = ({ block: { _id, title, content } }) => {
     });
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", position: "relative" }} ref={target}>
       {editing === "title" ? (
         <Input
           defaultValue={title}
@@ -35,12 +38,9 @@ const Block = ({ block: { _id, title, content } }) => {
           }}
         />
       ) : (
-        <Flex>
-          <Heading onClick={() => setEditing("title")} sx={{ width: "100%" }}>
-            {title || "Untitled"}
-          </Heading>
-          <BlockOptions blockId={_id} />
-        </Flex>
+        <Heading onClick={() => setEditing("title")} sx={{ width: "100%" }}>
+          {title || "Untitled"}
+        </Heading>
       )}
       {editing === "content" ? (
         <Textarea
@@ -57,6 +57,7 @@ const Block = ({ block: { _id, title, content } }) => {
           <ReactMarkdown>{content || "Add content"}</ReactMarkdown>
         </Text>
       )}
+      {isHovering && !editing && <BlockOptions blockId={_id} />}
     </Box>
   );
 };
