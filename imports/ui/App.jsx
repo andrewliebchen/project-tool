@@ -1,7 +1,7 @@
 import React from "react";
 import { BlocksCollection } from "../api/blocks";
 import { useTracker } from "meteor/react-meteor-data";
-import { Heading, Text, Flex, Box, Button } from "theme-ui";
+import { Heading, Text, Flex, Box, Button, Grid } from "theme-ui";
 import Block from "./Block";
 
 export const App = () => {
@@ -16,11 +16,23 @@ export const App = () => {
   };
 
   return (
-    <Flex sx={{ flexDirection: "column", gap: 4, p: 4 }}>
-      {blocks.map((block) => (
-        <Block key={block._id} block={block} />
-      ))}
-      <Button onClick={() => addNewBlock}>Add</Button>
-    </Flex>
+    <Grid gap={4} columns={["1fr 4fr 1fr"]}>
+      <Box sx={{ position: "sticky", top: 0 }}>
+        {blocks.map((block) => (
+          <Flex key={block._id}>
+            <Text>{block.title || "Untitled"}</Text>
+          </Flex>
+        ))}
+        <Button onClick={() => addNewBlock()}>Add</Button>
+      </Box>
+      <Flex sx={{ flexDirection: "column", gap: 4 }}>
+        {blocks.map((block) => (
+          <Block key={block._id} block={block} />
+        ))}
+      </Flex>
+      <Box>
+        <Text>Present</Text>
+      </Box>
+    </Grid>
   );
 };

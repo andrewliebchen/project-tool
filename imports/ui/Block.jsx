@@ -1,6 +1,17 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, Input, Textarea, Button } from "theme-ui";
+import {
+  Box,
+  Heading,
+  Text,
+  Input,
+  Textarea,
+  Button,
+  Flex,
+  IconButton,
+} from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
+import UilEllipsisV from "@iconscout/react-unicons/icons/uil-ellipsis-v";
+import ReactMarkdown from "react-markdown";
 
 const Block = ({ block: { _id, title, content } }) => {
   const [editing, setEditing] = useState(false);
@@ -23,9 +34,14 @@ const Block = ({ block: { _id, title, content } }) => {
           }}
         />
       ) : (
-        <Heading onClick={() => setEditing("title")}>
-          {title || "Add a title"}
-        </Heading>
+        <Flex>
+          <Heading onClick={() => setEditing("title")} sx={{ width: "100%" }}>
+            {title || "Untitled"}
+          </Heading>
+          <IconButton onClick={() => console.log("Block options")}>
+            <UilEllipsisV />
+          </IconButton>
+        </Flex>
       )}
       {editing === "content" ? (
         <Textarea
@@ -39,7 +55,7 @@ const Block = ({ block: { _id, title, content } }) => {
         />
       ) : (
         <Text onClick={() => setEditing("content")}>
-          {content || "Add content"}
+          <ReactMarkdown>{content || "Add content"}</ReactMarkdown>
         </Text>
       )}
     </Box>
