@@ -10,7 +10,8 @@ import {
   IconButton,
 } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
-import UilEllipsisV from "@iconscout/react-unicons/icons/uil-ellipsis-v";
+import BlockOptions from "./BlockOptions";
+
 import ReactMarkdown from "react-markdown";
 
 const Block = ({ block: { _id, title, content } }) => {
@@ -38,9 +39,7 @@ const Block = ({ block: { _id, title, content } }) => {
           <Heading onClick={() => setEditing("title")} sx={{ width: "100%" }}>
             {title || "Untitled"}
           </Heading>
-          <IconButton onClick={() => console.log("Block options")}>
-            <UilEllipsisV />
-          </IconButton>
+          <BlockOptions blockId={_id} />
         </Flex>
       )}
       {editing === "content" ? (
