@@ -19,7 +19,7 @@ export const App = () => {
     <Grid gap={4} columns={["1fr 4fr 1fr"]}>
       <Box sx={{ position: "sticky", top: 0 }}>
         {blocks.map((block) => (
-          <Flex key={block._id}>
+          <Flex key={block._id} sx={{ mb: 2 }}>
             <Text>{block.title || "Untitled"}</Text>
           </Flex>
         ))}

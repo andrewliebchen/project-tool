@@ -13,6 +13,7 @@
     "@iconscout/react-unicons": "^2.0.2",
     "meteor-node-stubs": "^1.2.5",
     "react": "^18.2.0",
+    "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.6",
     "theme-ui": "^0.15.7"

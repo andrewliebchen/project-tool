@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import UilEllipsisV from "@iconscout/react-unicons/icons/uil-ellipsis-v";
 import { IconButton, Box, Text } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 const BlockOptions = ({ blockId }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const ref = useOnclickOutside(() => {
+    setShowOptions(false);
+  });
+
   return (
     <Box sx={{ position: "relative" }}>
       {showOptions ? (
         <Box
+          ref={ref}
           sx={{
             position: "absolute",
             border: "1px solid",
