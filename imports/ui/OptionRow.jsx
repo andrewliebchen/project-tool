@@ -5,7 +5,7 @@ const OptionRow = ({ icon, label, onClick }) => (
   <Flex
     sx={{
       alignItems: "center",
-      gap: 3,
+      gap: 2,
       cursor: "pointer",
       p: 1,
       "&:hover": { bg: "muted" },

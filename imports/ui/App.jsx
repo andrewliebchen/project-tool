@@ -16,6 +16,7 @@ export const App = () => {
         title: "",
         content: "",
         createdAt: Date.now(),
+        type: "text",
       });
 
     // Create the slide, tied to block ID

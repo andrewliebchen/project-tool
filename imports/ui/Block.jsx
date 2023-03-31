@@ -57,7 +57,9 @@ const Block = ({ block: { _id, title, content } }) => {
           <ReactMarkdown>{content || "Add content"}</ReactMarkdown>
         </Text>
       )}
-      {isHovering && !editing && <BlockOptions blockId={_id} />}
+      {isHovering && !editing && (
+        <BlockOptions blockId={_id} blockType={(type = "text")} />
+      )}
     </Box>
   );
 };

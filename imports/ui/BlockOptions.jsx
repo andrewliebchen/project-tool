@@ -7,8 +7,9 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import OptionRow from "./OptionRow";
 import OptionsMenu from "./OptionsMenu";
+import blockTypes from "./blockTypes";
 
-const BlockOptions = ({ blockId }) => {
+const BlockOptions = ({ blockId, blockType }) => {
   const [showOptions, setShowOptions] = useState(false);
   const ref = useOnclickOutside(() => {
     setShowOptions(false);
@@ -34,6 +35,10 @@ const BlockOptions = ({ blockId }) => {
     <Box sx={{ position: "absolute", top: 0, right: 0 }}>
       {showOptions ? (
         <OptionsMenu ref={ref}>
+          <OptionRow
+            label={`Type: ${blockTypes[blockType].label}`}
+            icon={blockTypes[blockType].icon}
+          />
           <OptionRow
             icon={<UilTrash />}
             label="Delete"

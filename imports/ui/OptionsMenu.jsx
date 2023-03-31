@@ -10,6 +10,7 @@ const OptionsMenu = forwardRef(({ children }, ref) => (
       p: 1,
       right: 0,
       bg: "white",
+      width: 200,
     }}
   >
     {children}
