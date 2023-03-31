@@ -26,7 +26,7 @@ const Block = ({ block: { _id, title, content } }) => {
     });
 
   return (
-    <Box sx={{ width: "100%", position: "relative" }} ref={target}>
+    <Box sx={{ width: "100%", position: "relative", p: 3 }} ref={target}>
       {editing === "title" ? (
         <Input
           defaultValue={title}
