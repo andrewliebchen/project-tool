@@ -27,7 +27,7 @@ export const App = () => {
   };
 
   return (
-    <Grid gap={2} columns={["1fr 4fr 1fr"]} sx={{ minHeight: "100vh" }}>
+    <Grid gap={4} columns={["1fr 5fr 1fr"]} sx={{ minHeight: "100vh" }}>
       <Box sx={{ position: "sticky", top: 0, p: 3 }}>
         {blocks.map((block) => (
           <Flex key={block._id} sx={{ mb: 2 }}>

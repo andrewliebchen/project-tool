@@ -17,7 +17,7 @@ import ReactMarkdown from "react-markdown";
 
 const Block = ({ block: { _id, title, content } }) => {
   const [editing, setEditing] = useState(false);
-  const target = React.useRef(null);
+  const target = useRef(null);
   const isHovering = useHover(target);
 
   const updateBlock = (args) =>

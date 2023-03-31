@@ -10,7 +10,7 @@ const SlidePreview = () => {
   return (
     <Flex sx={{ flexDirection: "column", gap: 3 }}>
       {slides.map((slide) => (
-        <Slide key={slide._id} />
+        <Slide key={slide._id} slide={slide} />
       ))}
     </Flex>
   );
