@@ -4,6 +4,9 @@ import { IconButton, Box, Text } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
 import { SlidesCollection } from "../api/slides";
 import useOnclickOutside from "react-cool-onclickoutside";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import OptionRow from "./OptionRow";
+import OptionsMenu from "./OptionsMenu";
 
 const BlockOptions = ({ blockId }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -30,18 +33,13 @@ const BlockOptions = ({ blockId }) => {
   return (
     <Box sx={{ position: "absolute", top: 0, right: 0 }}>
       {showOptions ? (
-        <Box
-          ref={ref}
-          sx={{
-            position: "absolute",
-            border: "1px solid",
-            p: 3,
-            right: 0,
-            bg: "white",
-          }}
-        >
-          <Text onClick={() => handleRemoveBlock()}>Delete</Text>
-        </Box>
+        <OptionsMenu ref={ref}>
+          <OptionRow
+            icon={<UilTrash />}
+            label="Delete"
+            onClick={() => handleRemoveBlock()}
+          />
+        </OptionsMenu>
       ) : (
         <IconButton onClick={() => setShowOptions(true)}>
           <UilEllipsisV />
