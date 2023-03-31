@@ -26,7 +26,15 @@ const Block = ({ block: { _id, title, content } }) => {
     });
 
   return (
-    <Box sx={{ width: "100%", position: "relative", p: 3 }} ref={target}>
+    <Box
+      sx={{
+        width: "100%",
+        position: "relative",
+        p: 3,
+        zIndex: isHovering ? 2 : 1,
+      }}
+      ref={target}
+    >
       {editing === "title" ? (
         <Input
           defaultValue={title}
@@ -57,9 +65,7 @@ const Block = ({ block: { _id, title, content } }) => {
           <ReactMarkdown>{content || "Add content"}</ReactMarkdown>
         </Text>
       )}
-      {isHovering && !editing && (
-        <BlockOptions blockId={_id} blockType={(type = "text")} />
-      )}
+      {!editing && <BlockOptions blockId={_id} blockType={(type = "text")} />}
     </Box>
   );
 };

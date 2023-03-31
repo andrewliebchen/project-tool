@@ -1,8 +1,10 @@
 import React from "react";
 import { Flex, Text } from "theme-ui";
+import { UilAngleRight } from "@iconscout/react-unicons";
 
-const OptionRow = ({ icon, label, onClick }) => (
+const OptionRow = ({ icon, label, onClick, submenu }) => (
   <Flex
+    onClick={onClick}
     sx={{
       alignItems: "center",
       gap: 2,
@@ -12,7 +14,8 @@ const OptionRow = ({ icon, label, onClick }) => (
     }}
   >
     {icon}
-    <Text onClick={onClick}>{label}</Text>
+    <Text sx={{ mr: "auto" }}>{label}</Text>
+    {submenu && <UilAngleRight />}
   </Flex>
 );
 
