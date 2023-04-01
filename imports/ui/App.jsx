@@ -5,6 +5,7 @@ import { Text, Flex, Box, Button, Grid } from "theme-ui";
 import Block from "./Block";
 import SlidePreview from "./SlidePreview";
 import { SlidesCollection } from "../api/slides";
+import blockTypes from "./blockTypes";
 
 export const App = () => {
   const blocks = useTracker(() => BlocksCollection.find({}).fetch());
@@ -14,7 +15,7 @@ export const App = () => {
     const insertNewBlock = () =>
       BlocksCollection.insert({
         title: "",
-        content: "",
+        textContent: "",
         createdAt: Date.now(),
         type: "text",
       });
@@ -31,7 +32,8 @@ export const App = () => {
     <Grid gap={4} columns={["1fr 5fr 1fr"]} sx={{ minHeight: "100vh" }}>
       <Box sx={{ position: "sticky", top: 0, p: 3 }}>
         {blocks.map((block) => (
-          <Flex key={block._id} sx={{ mb: 2 }}>
+          <Flex key={block._id} sx={{ mb: 2, gap: 2, alignItems: "center" }}>
+            {blockTypes[block.type].icon}
             <Text>{block.title || "Untitled"}</Text>
           </Flex>
         ))}
