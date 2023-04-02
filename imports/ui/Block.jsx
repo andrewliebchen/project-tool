@@ -49,7 +49,11 @@ const Block = ({ block: { _id, title, textContent, type } }) => {
         p: 3,
       }}
     >
-      <BlockToolbar removeBlock={handleRemoveBlock} setEditing={setEditing} />
+      <BlockToolbar
+        removeBlock={handleRemoveBlock}
+        setEditing={setEditing}
+        blockId={_id}
+      />
       <Input
         defaultValue={title}
         placeholder="Add a title"
