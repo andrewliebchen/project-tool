@@ -11,11 +11,11 @@ import {
   Textarea,
 } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
-import { UilPen, UilTrash } from "@iconscout/react-unicons";
+import { UilPen } from "@iconscout/react-unicons";
+import BlockToolbar from "./BlockToolbar";
+import BlockContent from "./BlockContent";
 
-import ReactMarkdown from "react-markdown";
-
-const Block = ({ block: { _id, title, textContent } }) => {
+const Block = ({ block: { _id, title, textContent, type } }) => {
   const [editing, setEditing] = useState(false);
 
   const handleUpdateBlock = (args) =>
@@ -49,21 +49,10 @@ const Block = ({ block: { _id, title, textContent } }) => {
         p: 3,
       }}
     >
-      <Flex sx={{ alignItems: "center" }}>
-        <Select sx={{ width: 200 }}>
-          <option>Text</option>
-        </Select>
-        <Flex sx={{ gap: 3, ml: "auto", alignItems: "center" }}>
-          <IconButton onClick={() => handleRemoveBlock()}>
-            <UilTrash />
-          </IconButton>
-          <Button onClick={() => setEditing(false)}>Done</Button>
-        </Flex>
-      </Flex>
+      <BlockToolbar removeBlock={handleRemoveBlock} setEditing={setEditing} />
       <Input
         defaultValue={title}
         placeholder="Add a title"
-        autoFocus
         onChange={(event) => {
           handleUpdateBlock({ title: event.target.value });
         }}
@@ -90,9 +79,7 @@ const Block = ({ block: { _id, title, textContent } }) => {
           <UilPen />
         </IconButton>
       </Flex>
-      <Text>
-        <ReactMarkdown>{textContent || "Add content"}</ReactMarkdown>
-      </Text>
+      <BlockContent type={type} textContent={textContent} />
     </Box>
   );
 };
