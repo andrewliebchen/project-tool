@@ -1,23 +1,26 @@
 import React from "react";
 import { Text, Box, Input, Textarea, Flex, Checkbox } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
-import uniqueString from "unique-string";
 import ChecklistTodo from "./ChecklistTodo";
+import { TodosCollection } from "../api/todos";
+import { useTracker } from "meteor/react-meteor-data";
 
-const BlockEditor = ({
-  block: { _id, type, textContent, checklistContent, title },
-}) => {
+const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
+  const todos = useTracker(() =>
+    TodosCollection.find({ blockId: _id }).fetch()
+  );
+
   const handleUpdateBlock = (args) =>
     BlocksCollection.update(_id, {
       $set: args,
     });
 
-  const handleCreateChecklistItem = (value) =>
-    // Make a collection for todos
-    BlocksCollection.upsert(_id, {
-      $push: {
-        checklistContent: { id: uniqueString(), checked: false, text: value },
-      },
+  const handleCreateTodo = (value) =>
+    TodosCollection.insert({
+      blockId: _id,
+      text: value,
+      checked: false,
+      createdAt: Date.now(),
     });
 
   const renderTextEditor = () => (
@@ -49,16 +52,15 @@ const BlockEditor = ({
           handleUpdateBlock({ title: event.target.value });
         }}
       />
-      {checklistContent.map((todo) => (
-        <ChecklistTodo key={todo.id} todo={todo} />
+      {todos.map((todo) => (
+        <ChecklistTodo key={todo._id} todo={todo} disabled />
       ))}
       <Flex sx={{ alignItems: "center" }}>
         <Checkbox disabled />
         <Input
           placeholder="Add a todo and press enter"
           onKeyDown={(event) =>
-            event.key === "Enter" &&
-            handleCreateChecklistItem(event.target.value)
+            event.key === "Enter" && handleCreateTodo(event.target.value)
           }
         />
       </Flex>

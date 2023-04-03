@@ -1,26 +1,22 @@
 import React from "react";
 import { Box, Flex, Checkbox, Text } from "theme-ui";
-import { BlocksCollection } from "../api/blocks";
+import { TodosCollection } from "../api/todos";
 
-const ChecklistTodo = ({ blockId, todo: { id, checked, text } }) => (
-  <Flex
-    sx={{ alignItems: "center", cursor: "pointer" }}
-    onClick={() =>
-      // Make this simpler with a todo collection
-      BlocksCollection.update(
-        {
-          _id: blockId,
-          "checklistContent.id": id,
-        },
-        {
-          $set: { "checklistContent.$.checked": !checked },
-        }
-      )
-    }
-  >
-    <Checkbox defaultChecked={checked} />
-    <Text>{text}</Text>
-  </Flex>
-);
+const ChecklistTodo = ({ disabled, todo: { _id, checked, text } }) => {
+  const handleCheck = () =>
+    TodosCollection.update(_id, { $set: { checked: !checked } });
+
+  return (
+    <Flex sx={{ alignItems: "center" }}>
+      <Checkbox
+        checked={checked}
+        onChange={() => handleCheck()}
+        disabled={disabled}
+        sx={{ cursor: "pointer" }}
+      />
+      <Text>{text}</Text>
+    </Flex>
+  );
+};
 
 export default ChecklistTodo;
