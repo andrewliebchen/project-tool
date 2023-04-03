@@ -14,6 +14,7 @@ const Block = ({ block }) => {
 
   return editing ? (
     <Flex
+      ref={ref}
       sx={{
         width: "100%",
         border: "1px solid",
@@ -23,7 +24,7 @@ const Block = ({ block }) => {
       }}
     >
       <BlockToolbar setEditing={setEditing} block={block} />
-      <BlockEditor ref={ref} block={block} />
+      <BlockEditor block={block} />
     </Flex>
   ) : (
     <Box
@@ -32,7 +33,9 @@ const Block = ({ block }) => {
         p: 3,
       }}
     >
-      <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
+      <Flex
+        sx={{ justifyContent: "space-between", alignItems: "center", mb: 3 }}
+      >
         <Heading>{block.title || "Untitled"}</Heading>
         <IconButton onClick={() => setEditing(true)}>
           <UilPen />

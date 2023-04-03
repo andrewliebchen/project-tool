@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { BlocksCollection } from "/imports/api/blocks";
 import { SlidesCollection } from "../imports/api/slides";
+import { TodosCollection } from "../imports/api/todos";
 
 const insertBlock = (args) =>
   BlocksCollection.insert({ ...args, createdAt: Date.now() });

@@ -7,7 +7,7 @@ import { SlidesCollection } from "../api/slides";
 
 const BlockToolbar = ({ setEditing, block: { _id, type } }) => {
   const handleUpdateBlockType = (type) =>
-    BlocksCollection.update(blockId, {
+    BlocksCollection.update(_id, {
       $set: { type: type },
     });
 

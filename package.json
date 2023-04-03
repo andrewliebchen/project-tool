@@ -17,7 +17,8 @@
     "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.6",
-    "theme-ui": "^0.15.7"
+    "theme-ui": "^0.15.7",
+    "unique-string": "^3.0.0"
   },
   "meteor": {
     "mainModule": {
