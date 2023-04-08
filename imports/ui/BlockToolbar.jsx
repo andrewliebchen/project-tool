@@ -1,11 +1,16 @@
 import React from "react";
-import { Flex, Select, IconButton, Button } from "theme-ui";
+import { Flex, Select, IconButton, Button, Input } from "theme-ui";
 import { UilTrash } from "@iconscout/react-unicons";
 import blockTypes from "./blockTypes";
 import { BlocksCollection } from "../api/blocks";
 import { SlidesCollection } from "../api/slides";
 
-const BlockToolbar = ({ setEditing, block: { _id, type } }) => {
+const BlockToolbar = ({ setEditing, block: { _id, type, title } }) => {
+  const handleUpdateBlockTitle = (title) =>
+    BlocksCollection.update(_id, {
+      $set: { title: title },
+    });
+
   const handleUpdateBlockType = (type) =>
     BlocksCollection.update(_id, {
       $set: { type: type },
@@ -28,7 +33,15 @@ const BlockToolbar = ({ setEditing, block: { _id, type } }) => {
   };
 
   return (
-    <Flex sx={{ alignItems: "center" }}>
+    <Flex sx={{ alignItems: "center", gap: 3 }}>
+      <Input
+        defaultValue={title}
+        placeholder="Add a title"
+        onChange={(event) => {
+          handleUpdateBlockTitle(event.target.value);
+        }}
+        sx={{ flex: "1 1 0" }}
+      />
       <Select
         sx={{ width: 200 }}
         onChange={(event) => handleUpdateBlockType(event.target.value)}
@@ -41,10 +54,12 @@ const BlockToolbar = ({ setEditing, block: { _id, type } }) => {
         ))}
       </Select>
       <Flex sx={{ gap: 3, ml: "auto", alignItems: "center" }}>
-        <IconButton onClick={handleRemoveBlock}>
+        <IconButton onClick={handleRemoveBlock} sx={{ flexShrink: 0 }}>
           <UilTrash />
         </IconButton>
-        <Button onClick={() => setEditing(false)}>Done</Button>
+        <Button onClick={() => setEditing(false)} sx={{ flexShrink: 0 }}>
+          Done
+        </Button>
       </Flex>
     </Flex>
   );

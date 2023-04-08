@@ -4,6 +4,7 @@ import { BlocksCollection } from "../api/blocks";
 import ChecklistTodo from "./ChecklistTodo";
 import { TodosCollection } from "../api/todos";
 import { useTracker } from "meteor/react-meteor-data";
+import TextareaAutosize from "react-autosize-textarea";
 
 const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
   const todos = useTracker(() =>
@@ -25,37 +26,24 @@ const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
 
   const renderTextEditor = () => (
     <Flex sx={{ flexDirection: "column", gap: 3 }}>
-      <Input
-        defaultValue={title}
-        placeholder="Add a title"
-        onChange={(event) => {
-          handleUpdateBlock({ title: event.target.value });
-        }}
-      />
-      <Textarea
+      <TextareaAutosize
         defaultValue={textContent}
         placeholder="Add content"
         autoFocus
         onChange={(event) => {
           handleUpdateBlock({ textContent: event.target.value });
         }}
+        onResize={(event) => {}}
       />
     </Flex>
   );
 
   const renderChecklistEditor = () => (
-    <Flex sx={{ flexDirection: "column", gap: 3 }}>
-      <Input
-        defaultValue={title}
-        placeholder="Add a title"
-        onChange={(event) => {
-          handleUpdateBlock({ title: event.target.value });
-        }}
-      />
+    <Flex sx={{ flexDirection: "column" }}>
       {todos.map((todo) => (
         <ChecklistTodo key={todo._id} todo={todo} disabled />
       ))}
-      <Flex sx={{ alignItems: "center" }}>
+      <Flex sx={{ alignItems: "center", p: 1, pt: 3 }}>
         <Checkbox disabled />
         <Input
           placeholder="Add a todo and press enter"
