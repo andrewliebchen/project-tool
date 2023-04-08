@@ -19,7 +19,7 @@ const BlockContent = ({
   );
 
   const renderChecklistContent = () => (
-    <Flex sx={{ flexDirection: "column", gap: 3 }}>
+    <Flex sx={{ flexDirection: "column" }}>
       {todos.map((todo) => (
         <ChecklistTodo key={todo._id} todo={todo} />
       ))}

@@ -59,9 +59,12 @@ const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
         <Checkbox disabled />
         <Input
           placeholder="Add a todo and press enter"
-          onKeyDown={(event) =>
-            event.key === "Enter" && handleCreateTodo(event.target.value)
-          }
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleCreateTodo(event.target.value);
+              event.target.value = "";
+            }
+          }}
         />
       </Flex>
     </Flex>
