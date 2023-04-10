@@ -29,12 +29,21 @@ export const App = () => {
   };
 
   return (
-    <Grid gap={6} columns={["1fr 5fr 1fr"]} sx={{ minHeight: "100vh" }}>
+    <Grid gap={6} columns={["2fr 5fr 2fr"]} sx={{ minHeight: "100vh" }}>
       <Box sx={{ position: "sticky", top: 0, p: 3 }}>
         {blocks.map((block) => (
           <Flex key={block._id} sx={{ mb: 2, gap: 2, alignItems: "center" }}>
             {blockTypes[block.type].icon}
-            <Text>{block.title || "Untitled"}</Text>
+            <Text
+              sx={{
+                textOverflow: "ellipsis",
+                display: "inline-block",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {block.title || "Untitled"}
+            </Text>
           </Flex>
         ))}
         <Button onClick={() => handleCreateNewBlock()}>Add</Button>
