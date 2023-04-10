@@ -3,7 +3,7 @@ import { TodosCollection } from "../api/todos";
 import { useTracker } from "meteor/react-meteor-data";
 import { Text, Progress, Flex } from "theme-ui";
 
-const ChecklistProgres = ({ block: { _id, type } }) => {
+const ChecklistProgress = ({ block: { _id, type } }) => {
   const isChecklist = type === "checklist";
   const todos =
     isChecklist &&
@@ -30,4 +30,4 @@ const ChecklistProgres = ({ block: { _id, type } }) => {
   );
 };
 
-export default ChecklistProgres;
+export default ChecklistProgress;

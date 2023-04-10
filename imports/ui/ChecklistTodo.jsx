@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
-import { Box, Flex, Checkbox, Text, IconButton } from "theme-ui";
-import { UilTrash } from "@iconscout/react-unicons";
+import { Flex, Text, IconButton } from "theme-ui";
+import {
+  UilTrash,
+  UilCheckSquare,
+  UilSquareFull,
+} from "@iconscout/react-unicons";
 import { TodosCollection } from "../api/todos";
 import useHover from "@react-hook/hover";
 
@@ -9,7 +13,7 @@ const ChecklistTodo = ({ disabled, todo: { _id, checked, text } }) => {
   const isHovering = useHover(target);
 
   const handleCheck = () =>
-    TodosCollection.update(_id, { $set: { checked: !checked } });
+    disabled || TodosCollection.update(_id, { $set: { checked: !checked } });
 
   const handleRemoveTodo = () => TodosCollection.remove(_id);
 
@@ -21,14 +25,11 @@ const ChecklistTodo = ({ disabled, todo: { _id, checked, text } }) => {
         px: 1,
         "&:hover": { bg: "muted" },
       }}
-      onClick={handleCheck}
       ref={target}
     >
-      <Checkbox
-        checked={checked}
-        disabled={disabled}
-        sx={{ cursor: "pointer" }}
-      />
+      <IconButton sx={{ cursor: "pointer", mr: 2 }} onClick={handleCheck}>
+        {checked ? <UilCheckSquare /> : <UilSquareFull />}
+      </IconButton>
       <Text>{text}</Text>
       {isHovering && (
         <IconButton sx={{ ml: "auto" }} onClick={handleRemoveTodo}>

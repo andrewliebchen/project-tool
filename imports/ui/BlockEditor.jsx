@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, Box, Input, Textarea, Flex, Checkbox } from "theme-ui";
+import { Input, Flex, IconButton } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
 import ChecklistTodo from "./ChecklistTodo";
 import { TodosCollection } from "../api/todos";
 import { useTracker } from "meteor/react-meteor-data";
 import TextareaAutosize from "react-autosize-textarea";
+import { UilSquareFull } from "@iconscout/react-unicons";
 
 const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
   const todos = useTracker(() =>
@@ -44,7 +45,9 @@ const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
         <ChecklistTodo key={todo._id} todo={todo} disabled />
       ))}
       <Flex sx={{ alignItems: "center", p: 1, pt: 3 }}>
-        <Checkbox disabled />
+        <IconButton sx={{ cursor: "pointer", mr: 2 }}>
+          <UilSquareFull />
+        </IconButton>
         <Input
           placeholder="Add a todo and press enter"
           onKeyDown={(event) => {

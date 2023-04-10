@@ -5,7 +5,7 @@ import BlockToolbar from "./BlockToolbar";
 import BlockContent from "./BlockContent";
 import BlockEditor from "./BlockEditor";
 import useOnclickOutside from "react-cool-onclickoutside";
-import ChecklistProgress from "./ChecklistProgres";
+import ChecklistProgress from "./ChecklistProgress";
 
 const Block = ({ block }) => {
   const [editing, setEditing] = useState(false);
