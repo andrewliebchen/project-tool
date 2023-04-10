@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import { App } from "/imports/ui/App";
 import { ThemeProvider } from "theme-ui";
 import theme from "/imports/ui/theme";
+import AppProvider from "../imports/ui/AppProvider";
 
 export default (props) => (
   <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
@@ -14,7 +15,9 @@ Meteor.startup(() => {
   const root = createRoot(container);
   root.render(
     <ThemeProvider theme={theme}>
-      <App />
+      <AppProvider>
+        <App />
+      </AppProvider>
     </ThemeProvider>
   );
 });
