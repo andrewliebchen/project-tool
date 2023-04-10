@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Box, Flex, Heading, IconButton } from "theme-ui";
+import { Box, Flex, Heading, IconButton, Text } from "theme-ui";
 import { UilPen } from "@iconscout/react-unicons";
 import BlockToolbar from "./BlockToolbar";
 import BlockContent from "./BlockContent";
 import BlockEditor from "./BlockEditor";
 import useOnclickOutside from "react-cool-onclickoutside";
+import ChecklistProgress from "./ChecklistProgres";
 
 const Block = ({ block }) => {
   const [editing, setEditing] = useState(false);
@@ -34,9 +35,15 @@ const Block = ({ block }) => {
       }}
     >
       <Flex
-        sx={{ justifyContent: "space-between", alignItems: "center", mb: 3 }}
+        sx={{
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 3,
+          gap: 3,
+        }}
       >
-        <Heading>{block.title || "Untitled"}</Heading>
+        <Heading sx={{ mr: "auto" }}>{block.title || "Untitled"}</Heading>
+        <ChecklistProgress block={block} />
         <IconButton onClick={() => setEditing(true)}>
           <UilPen />
         </IconButton>
