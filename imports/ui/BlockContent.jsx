@@ -1,16 +1,11 @@
-import React from "react";
-import { Text, Box, Flex, Checkbox } from "theme-ui";
-import ReactMarkdown from "react-markdown";
+import { Text, Flex } from "theme-ui";
+import AppContext from "./AppContext";
 import ChecklistTodo from "./ChecklistTodo";
-import { TodosCollection } from "../api/todos";
-import { useTracker } from "meteor/react-meteor-data";
+import React, { useContext } from "react";
+import ReactMarkdown from "react-markdown";
 
-const BlockContent = ({
-  block: { _id, type, textContent, checklistContent },
-}) => {
-  const todos = useTracker(() =>
-    TodosCollection.find({ blockId: _id }).fetch()
-  );
+const BlockContent = ({ block: { type, textContent } }) => {
+  const { todos } = useContext(AppContext);
 
   const renderTextContent = () => (
     <Text>

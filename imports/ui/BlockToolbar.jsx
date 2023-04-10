@@ -1,9 +1,9 @@
-import React from "react";
+import { BlocksCollection } from "../api/blocks";
 import { Flex, Select, IconButton, Button, Input } from "theme-ui";
+import { SlidesCollection } from "../api/slides";
 import { UilTrash } from "@iconscout/react-unicons";
 import blockTypes from "./blockTypes";
-import { BlocksCollection } from "../api/blocks";
-import { SlidesCollection } from "../api/slides";
+import React from "react";
 
 const BlockToolbar = ({ setEditing, block: { _id, type, title } }) => {
   const handleUpdateBlockTitle = (title) =>

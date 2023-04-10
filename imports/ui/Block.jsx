@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Box, Flex, Heading, IconButton, Text } from "theme-ui";
+import { Box, Flex, Heading, IconButton } from "theme-ui";
 import { UilPen } from "@iconscout/react-unicons";
-import BlockToolbar from "./BlockToolbar";
 import BlockContent from "./BlockContent";
 import BlockEditor from "./BlockEditor";
-import useOnclickOutside from "react-cool-onclickoutside";
+import BlockToolbar from "./BlockToolbar";
 import ChecklistProgress from "./ChecklistProgress";
+import React, { useState } from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 const Block = ({ block }) => {
   const [editing, setEditing] = useState(false);

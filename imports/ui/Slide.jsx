@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
-import { Flex, Box, Text, IconButton } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
-import useHover from "@react-hook/hover";
-import { UilTrash } from "@iconscout/react-unicons";
+import { Flex, Box, Text, IconButton } from "theme-ui";
 import { SlidesCollection } from "../api/slides";
+import { UilTrash } from "@iconscout/react-unicons";
+import React, { useRef } from "react";
+import useHover from "@react-hook/hover";
 
 const Slide = ({ slide: { _id, blockId } }) => {
   const target = useRef(null);

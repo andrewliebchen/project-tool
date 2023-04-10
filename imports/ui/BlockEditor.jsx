@@ -1,16 +1,15 @@
-import React from "react";
-import { Input, Flex, IconButton } from "theme-ui";
 import { BlocksCollection } from "../api/blocks";
-import ChecklistTodo from "./ChecklistTodo";
+import { Input, Flex, IconButton } from "theme-ui";
 import { TodosCollection } from "../api/todos";
-import { useTracker } from "meteor/react-meteor-data";
-import TextareaAutosize from "react-autosize-textarea";
 import { UilSquareFull } from "@iconscout/react-unicons";
+import AppContext from "./AppContext";
+import ChecklistTodo from "./ChecklistTodo";
+import React, { useContext } from "react";
+import TextareaAutosize from "react-autosize-textarea";
 
-const BlockEditor = ({ block: { _id, type, textContent, title } }) => {
-  const todos = useTracker(() =>
-    TodosCollection.find({ blockId: _id }).fetch()
-  );
+const BlockEditor = ({ block: { _id, type, textContent } }) => {
+  // Add this to contextAPI once we have project
+  const { todos } = useContext(AppContext);
 
   const handleUpdateBlock = (args) =>
     BlocksCollection.update(_id, {

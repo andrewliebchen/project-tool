@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Text, Flex, Box, Button, Grid } from "theme-ui";
-import Block from "./Block";
-import SlidesPreview from "./SlidesPreview";
-import BlocksNavigation from "./BlocksNavigation";
+import { Flex, Grid } from "theme-ui";
 import AppContext from "./AppContext";
+import Block from "./Block";
+import BlocksNavigation from "./BlocksNavigation";
+import React, { useContext } from "react";
+import SlidesPreview from "./SlidesPreview";
 
 export const App = () => {
   const { blocks } = useContext(AppContext);

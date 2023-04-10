@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
 import { Flex, Text, IconButton } from "theme-ui";
+import { TodosCollection } from "../api/todos";
 import {
-  UilTrash,
   UilCheckSquare,
   UilSquareFull,
+  UilTrash,
 } from "@iconscout/react-unicons";
-import { TodosCollection } from "../api/todos";
+import React, { useRef } from "react";
 import useHover from "@react-hook/hover";
 
 const ChecklistTodo = ({ disabled, todo: { _id, checked, text } }) => {

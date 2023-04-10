@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Flex, Box, Text } from "theme-ui";
-import Slide from "./Slide";
+import { Flex } from "theme-ui";
 import AppContext from "./AppContext";
+import React, { useContext } from "react";
+import Slide from "./Slide";
 
 const SlidesPreview = () => {
   const { slides } = useContext(AppContext);

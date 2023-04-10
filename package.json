@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.6",
     "@iconscout/react-unicons": "^2.0.2",
     "@react-hook/hover": "^4.0.0",
+    "has-value": "^2.0.2",
     "meteor-node-stubs": "^1.2.5",
     "react": "^18.2.0",
     "react-autosize-textarea": "^7.1.0",

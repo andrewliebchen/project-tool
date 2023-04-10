@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import AppContext from "./AppContext";
+import { BlocksCollection } from "../api/blocks";
 import { Flex, Box, Text, Button } from "theme-ui";
 import { SlidesCollection } from "../api/slides";
+import AppContext from "./AppContext";
 import blockTypes from "./blockTypes";
-import { BlocksCollection } from "../api/blocks";
+import React, { useContext } from "react";
 
 const BlocksNavigation = () => {
   const { blocks } = useContext(AppContext);
