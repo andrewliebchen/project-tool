@@ -1,7 +1,7 @@
 import { BlocksCollection } from "../api/blocks";
 import { Flex, Box, Text, IconButton } from "theme-ui";
 import { SlidesCollection } from "../api/slides";
-import { UilTrash } from "@iconscout/react-unicons";
+import { UilTrash, UilPen } from "@iconscout/react-unicons";
 import React, { useRef } from "react";
 import useHover from "@react-hook/hover";
 
@@ -30,13 +30,20 @@ const Slide = ({ slide: { _id, blockId } }) => {
           }}
         >
           {isHovering ? (
-            <IconButton onClick={handleRemoveSlide}>
-              <UilTrash />
-            </IconButton>
+            <Flex sx={{ gap: 2 }}>
+              <IconButton>
+                <UilPen />
+              </IconButton>
+              <IconButton onClick={handleRemoveSlide}>
+                <UilTrash />
+              </IconButton>
+            </Flex>
           ) : (
             blockContent && (
               <Box sx={{ fontSize: "0.5rem" }}>
-                <Text sx={{ fontWeight: "bold" }}>{blockContent.title}</Text>
+                <Text sx={{ fontWeight: "bold" }}>
+                  {blockContent.title || "Untitled"}
+                </Text>
                 <Text>{blockContent.content}</Text>
               </Box>
             )

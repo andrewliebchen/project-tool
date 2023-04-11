@@ -27,7 +27,11 @@ const BlocksNavigation = () => {
   };
 
   return (
-    <Box sx={{ position: "sticky", top: 0, p: 3 }}>
+    <Flex
+      sx={{ position: "sticky", top: 0, p: 3, flexDirection: "column", gap: 2 }}
+    >
+      <Button onClick={() => handleCreateNewBlock()}>Add block</Button>
+
       {blocks.map((block) => (
         <Flex key={block._id} sx={{ mb: 2, gap: 2, alignItems: "center" }}>
           {blockTypes[block.type].icon}
@@ -43,8 +47,7 @@ const BlocksNavigation = () => {
           </Text>
         </Flex>
       ))}
-      <Button onClick={() => handleCreateNewBlock()}>Add</Button>
-    </Box>
+    </Flex>
   );
 };
 
